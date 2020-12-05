@@ -1,7 +1,7 @@
 import { getToken } from '../../utils/auth'
 import {
   IFUserAction,
- IFUserState
+  IFUserState
 } from '../types'
 
 const initUserInfo: IFUserState = {

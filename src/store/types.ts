@@ -1,3 +1,8 @@
+export type rootState = {
+  user: IFUserState,
+  app: IFAppState
+}
+
 // actionType types
 export const USER_SET_USER_TOKEN = "USER_SET_USER_TOKEN";
 export const USER_SET_USER_INFO = "USER_SET_USER_INFO";

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('../layout'))
+const Dashboard = React.lazy(() => import('../views/layout'))
 
 export interface IFRouteBase {
   key: string,

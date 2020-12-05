@@ -1,6 +1,16 @@
 import { ThunkAction } from 'redux-thunk'
 import * as types from '../types'
 
+export const login = (username: string, password: string):
+  ThunkAction<void, types.IFUserState, unknown, types.IFUserAction> => (dispatch) => {
+  
+}
+
+export const logout = (token: string):
+  ThunkAction<void, types.IFUserState, unknown, types.IFUserAction> => (dispatch) => {
+  
+}
+
 export const getUserInfo = (token: string): 
   ThunkAction<void, types.IFUserState, unknown, types.IFUserAction> => (dispatch) => {
   return new Promise((resolve, reject) => {

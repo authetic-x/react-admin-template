@@ -1,6 +1,7 @@
 import { Modal } from 'antd'
 import axios, { AxiosRequestConfig } from 'axios'
 import store from '../store'
+import { logout } from '../store/actions/user'
 
 interface IFResponseData {
   code: number,
@@ -29,13 +30,14 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    const res = response.data as IFResponseData
+    return response.data
+    /* const res = response.data as IFResponseData
     if (res.code !== 20000) {
       // TODO: Message box
       return Promise.reject('error')
     } else {
       return response.data
-    }
+    } */
   },
   (error) => {
     const { status } = error.response
@@ -48,7 +50,7 @@ axiosInstance.interceptors.response.use(
         cancelText: "cancel",
         onOk() {
           let token = store.getState().user.token;
-          //TODO: store.dispatch(logout(token));
+          store.dispatch<any>(logout(token));
         },
         onCancel() {
           console.log("Cancel");
