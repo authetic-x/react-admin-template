@@ -2,6 +2,9 @@ import { Modal } from 'antd'
 import axios, { AxiosRequestConfig } from 'axios'
 import store from '../store'
 import { logout } from '../store/actions/user'
+import ReactDOM from 'react-dom'
+import { Spin } from 'antd'
+import { request } from 'https'
 
 interface IFResponseData {
   code: number,
@@ -14,15 +17,42 @@ const axiosInstance = axios.create({
   timeout: 3000
 })
 
+let requestCount = 0
+
+function showLoading() {
+  if (requestCount === 0) {
+    const dom = document.createElement('div')
+    dom.setAttribute('id', 'loading')
+    document.body.appendChild(dom)
+    ReactDOM.render(<Spin size='large'/>, dom)
+  }
+  requestCount++
+}
+
+function hideLoading() {
+  requestCount--
+  if (requestCount === 0) {
+    setTimeout(() => {
+      document.body.removeChild(document.getElementById('loading')!)
+    }, 500)
+  }
+}
+
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = store.getState().user.token
     if (token) {
       config.headers.Authorization = token
     }
+    if (config.headers.isLoading !== false) {
+      showLoading()
+    }
     return config
   },
   (error) => {
+    if (error.config.headers.isLoading !== false) {
+      hideLoading()
+    }
     // TODO: antd message box
     Promise.reject(error)
   }
@@ -30,6 +60,9 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    if (response.config.headers.isLoading !== false) {
+      hideLoading()
+    }
     return response.data
     /* const res = response.data as IFResponseData
     if (res.code !== 20000) {
@@ -40,6 +73,9 @@ axiosInstance.interceptors.response.use(
     } */
   },
   (error) => {
+    if (error.config.headers.isLoading !== false) {
+      hideLoading()
+    }
     const { status } = error.response
     if (status === 403) {
       Modal.confirm({

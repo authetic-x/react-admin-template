@@ -1,0 +1,10 @@
+.login-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  .login-form {
+    width: 50%;
+    min-width: 400px;
+  }
+}
