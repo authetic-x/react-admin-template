@@ -14,7 +14,10 @@ interface IFResponseData {
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 3000
+  timeout: 3000,
+  headers: {
+    isLoading: false
+  }
 })
 
 let requestCount = 0

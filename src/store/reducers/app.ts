@@ -2,13 +2,14 @@ import {
   IFAppState,
   IFAppAction
 } from '../types'
+import { Reducer } from 'redux'
 
 const initState: IFAppState = {
   sidebarOpened: false,
   settingPanelOpened: false
 }
 
-export default function app(state: IFAppState = initState, action: IFAppAction): IFAppState {
+const app: Reducer<IFAppState, IFAppAction> = (state = initState, action) => {
   switch(action.type) {
     case 'APP_TOGGLE_SIDEBAR':
       return {
@@ -24,3 +25,5 @@ export default function app(state: IFAppState = initState, action: IFAppAction):
       return state
   }
 }
+
+export default app

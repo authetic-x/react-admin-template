@@ -1,6 +1,6 @@
 import axios from '../utils/axios'
 
-export function login(data: any) {
+export function loginRequest(data: any) {
   return axios({
     url: '/api/login',
     method: 'post',
@@ -8,7 +8,7 @@ export function login(data: any) {
   })
 }
 
-export function logout(data: any) {
+export function logoutRequest(data: any) {
   return axios({
     url: '/api/logout',
     method: 'post',

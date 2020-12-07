@@ -3,6 +3,9 @@ import axios from '../../utils/axios'
 import { Form, Input, Button, Checkbox, message } from 'antd'
 import './index.scss'
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login, getUserInfo } from '../../store/actions/user'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,12 +16,14 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const Login: React.FC = (props) => {
+const Login: React.FC = (props: any) => {
   let history = useHistory()
 
   const onFinish = (values: any) => {
-    console.log('Finished: ', values)
-    loginRequest(values)
+    props.login(values.username, values.password)
+      .then((res: any) => {
+        history.push('/')
+      })
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -85,4 +90,6 @@ const Login: React.FC = (props) => {
   )
 }
 
-export default Login
+const LoginWrapper = connect((state: any) => state.user, { login, getUserInfo })(Login)
+
+export default LoginWrapper
