@@ -3,13 +3,13 @@ import { Layout } from 'antd'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { toggleSidebar } from '../../../store/actions/app'
 import { connect } from 'react-redux'
+import BreadCrumb from '../components/BreadCrumb'
+import BreadCrum from '../components/BreadCrumb';
 
 const { Header } = Layout
 
 const HeaderComp: React.FC = (props: any) => {
   const { sidebarOpened, toggleSidebar } = props
-
-
 
   return (
     <Header className="header">
@@ -19,6 +19,8 @@ const HeaderComp: React.FC = (props: any) => {
           onClick: () => toggleSidebar(),
         })
       }
+
+      <BreadCrumb />
     </Header>
   )
 }

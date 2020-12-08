@@ -23,12 +23,12 @@ const routes: IRoute[] = [
   { path: '/permission', title: 'Permission', component: Dashboard, roles: ['admin', 'editor', 'guest'],
     children: [
       {
-        path: 'permission/admin',
+        path: '/permission/admin',
         title: 'Admin Page',
         component: Dashboard
       },
       {
-        path: 'permission/editor',
+        path: '/permission/editor',
         title: 'Editor Page',
         component: Dashboard
       }

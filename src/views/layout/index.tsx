@@ -4,8 +4,9 @@ import Sider from './Sider'
 import './index.scss'
 import { connect } from 'react-redux'
 import Header from './Header'
+import Content from './Content'
 
-const { Content, Footer } = Layout
+const { Footer } = Layout
 
 const LayoutComponent: React.FC = (props: any) => {
   const { sidebarOpened } = props
@@ -22,9 +23,7 @@ const LayoutComponent: React.FC = (props: any) => {
             padding: 24,
             minHeight: 280,
           }}
-        >
-          Content
-        </Content>
+        />
         <Footer style={{ textAlign: 'center' }}>Openup-admin ©2020 Created by Ethan Hsu</Footer>
       </Layout>
     </Layout>
