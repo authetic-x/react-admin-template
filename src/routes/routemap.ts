@@ -1,8 +1,8 @@
 import React, { Children } from 'react';
-import Loadable from 'react-loadable'
+import Loadable, { LoadableComponent } from 'react-loadable'
 import Loading from '../components/Loading'
 
-const Dashboard = Loadable({ loader: () => import(/*webpackChunkName: 'Dashboard'*/'../views/layout'), loading: Loading })
+const Dashboard = Loadable({ loader: () => import(/*webpackChunkName: 'Dashboard'*/'../views/Dashboard'), loading: Loading })
 
 type Role = 'admin' | 'editor' | 'guest'
 
