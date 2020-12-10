@@ -14,7 +14,7 @@ interface SiderProps {
 
 const SiderComponent: React.FC<SiderProps> = (props) => {
   const location = useLocation()
-  console.log(location.pathname)
+  // console.log(location.pathname)
 
   const renderMenuNodes = (routes: IRoute[]) => {
     return routes.map(route => {

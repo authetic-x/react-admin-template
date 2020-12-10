@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import routes, { IRoute } from '../../../routes/routemap'
 import { flattenRoutes } from '../../../utils/utils'
+import Transition from '../../../components/Transition'
 
 const { Content } = Layout
 
@@ -14,6 +15,7 @@ interface IProps {
 
 const ContentComp: React.FC<IProps> = (props) => {
   const classes = classNames(props.className)
+  const location = useLocation()
 
   const flattenedRoutes = useMemo(() => {
     return flattenRoutes(routes)
@@ -21,21 +23,23 @@ const ContentComp: React.FC<IProps> = (props) => {
 
   return (
     <Content className={classes} style={props.style}>
-      <Switch>
-        <Redirect exact from='/' to='/dashboard'/>
-        {
-          flattenedRoutes.map(route => {
-            return (
-              <Route 
-                path={route.path}
-                key={route.path}
-                component={route.component}
-              />
-            )
-          })
-        }
+      <Transition key={location.pathname} in={true} animation='zoom-in-left' timeout={200}>
+        <Switch>
+          <Redirect exact from='/' to='/dashboard'/>
+          {
+            flattenedRoutes.map(route => {
+              return (
+                <Route 
+                  path={route.path}
+                  key={route.path}
+                  component={route.component}
+                />
+              )
+            })
+          }
 
-      </Switch>
+        </Switch>
+      </Transition>
     </Content>
   )
 }
