@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd'
 import { useLocation } from 'react-router-dom'
 import routes, { IRoute } from '../../../routes/routemap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './index.scss'
 
 const { Sider } = Layout
@@ -12,7 +13,7 @@ interface SiderProps {
   collapse: boolean
 }
 
-const SiderComponent: React.FC<SiderProps> = (props) => {
+const SiderComponent: React.FC<SiderProps> = (props: any) => {
   const location = useLocation()
   // console.log(location.pathname)
 
@@ -37,13 +38,21 @@ const SiderComponent: React.FC<SiderProps> = (props) => {
       }
     })
   }
+  
+  const renderSidebarLogo = () => {
+    return (
+      <div className="logo">
+        <h2 className='logo-title'>Openup</h2>
+      </div>
+    )
+  }
 
   return (
     <Sider className='sidebar' trigger={null} collapsible collapsed={props.collapse}>
       <div className='sidebar-wrapper'>
-        <div className="logo">
-          <h2 className='logo-title'>Openup</h2>
-        </div>
+        {
+          props.sidebarLogo ? renderSidebarLogo() : null
+        }
         <div className='menu-container custom-scrollbar'>
           <Menu theme="dark" mode="inline" selectedKeys={[location.pathname]}>
             {
@@ -56,4 +65,6 @@ const SiderComponent: React.FC<SiderProps> = (props) => {
   )
 }
 
-export default SiderComponent
+const SiderComponentWrapper = connect((state: any) => state.settings, {})(SiderComponent)
+
+export default SiderComponentWrapper

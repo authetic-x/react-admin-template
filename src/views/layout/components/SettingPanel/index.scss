@@ -1,0 +1,44 @@
+.setting-panel-container {
+  display: inline-block;
+  .setting-icon-wrapper {
+    display: inline-block;
+    margin-left: 1.5em;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .setting-panel-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+
+    .setting-panel {
+      position: absolute;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #fff;
+    }
+  }
+}
+
+// animation
+.panel-enter {
+  transform: translateX(200px);
+}
+
+.panel-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-in;
+}
+
+.panel-exit {
+}
+
+.panel-exit-active {
+  transform: translateX(200px);
+  transition: transform 300ms ease-in;
+}

@@ -39,6 +39,12 @@ export interface IFAuthAction {
   type: typeof APP_TOGGLE_SIDEBAR | typeof APP_TOGGLE_SETTINGPANEL
 }
 
+export interface IFSettingAction {
+  type: typeof SETTINGS_CHANGE_SETTINGS
+  key: keyof IFSettingState
+  value: boolean
+}
+
 // state types
 export interface IFAppState {
   sidebarOpened: boolean
@@ -50,4 +56,10 @@ export interface IFUserState {
   role: string,
   avatar: string,
   token: string
+}
+
+export interface IFSettingState {
+  sidebarLogo: boolean,
+  fixedHeader: boolean,
+  tagsView: boolean
 }

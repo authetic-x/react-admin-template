@@ -5,6 +5,7 @@ import { toggleSidebar } from '../../../store/actions/app'
 import { connect } from 'react-redux'
 import BreadCrumb from '../components/BreadCrumb'
 import Fullscreen from '../components/FullScreen'
+import SettingPanel from '../components/SettingPanel'
 import './index.scss'
 
 const { Header } = Layout
@@ -24,6 +25,7 @@ const HeaderComp: React.FC = (props: any) => {
       <BreadCrumb />
       <div className="right-menu">
         <Fullscreen />
+        <SettingPanel />
       </div>
     </Header>
   )
