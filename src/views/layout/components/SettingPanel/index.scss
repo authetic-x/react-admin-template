@@ -1,8 +1,10 @@
 .setting-panel-container {
   display: inline-block;
+  height: 64px;
+  vertical-align: middle;
   .setting-icon-wrapper {
     display: inline-block;
-    margin-left: 1.5em;
+    margin-left: 1em;
     font-size: 25px;
     cursor: pointer;
   }

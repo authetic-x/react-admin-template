@@ -43,5 +43,11 @@ export default {
         token
       }
     }
+  },
+  logout: () => {
+    return {
+      status: 0,
+      message: 'Logout success'
+    }
   }
 }

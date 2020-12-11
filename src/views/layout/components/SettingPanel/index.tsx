@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Row, Col, Switch, Divider } from 'antd'
+import { Drawer, Row, Col, Switch, Divider, Tooltip } from 'antd'
 import { SettingOutlined } from '@ant-design/icons'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
@@ -57,9 +57,11 @@ const SettingPanel: React.FC = (props: any) => {
 
   return (
     <div className='setting-panel-container'>
-      <span className='setting-icon-wrapper'>
-        <SettingOutlined onClick={handleSettingClick}/>
-      </span>
+      <Tooltip placement='bottom' title='SettingPanel'>
+        <span className='setting-icon-wrapper'>
+          <SettingOutlined onClick={handleSettingClick}/>
+        </span>
+      </Tooltip>
 
       <Drawer
         title='Setting Panel'

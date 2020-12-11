@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk'
 import * as types from '../types'
-import { loginRequest } from '../../api/login'
-import { setToekn } from 'src/utils/auth'
+import { loginRequest, logoutRequest } from '../../api/login'
+import { setToekn, removeToken } from 'src/utils/auth'
 
 export const login = (username: string, password: string):
   ThunkAction<void, types.IFUserState, unknown, types.IFUserAction> => (dispatch) => {
@@ -21,9 +21,18 @@ export const login = (username: string, password: string):
   })
 }
 
-export const logout = (token: string):
+export const logout = ():
   ThunkAction<void, types.IFUserState, unknown, types.IFUserAction> => (dispatch) => {
-  
+  return new Promise((resolve, reject) => {
+    console.log('Send logout request')
+    logoutRequest()
+      .then((res: any) => {
+        removeToken()
+        //NOTE: 这里要调用resetUser函数，tm真实天坑
+        dispatch(resetUser())
+        resolve(res.message)
+      })
+  })
 }
 
 export const getUserInfo = (token: string): 
@@ -48,7 +57,8 @@ export const setUserInfo = (userInfo: any): types.IFUserAction => {
 }
 
 export const resetUser = (): types.IFUserAction => {
+  console.log('create action')
   return {
-    type: types.USER_RESET_USER
+    type: types.USER_RESET_USER_TOKEN
   }
 }

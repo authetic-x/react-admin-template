@@ -8,10 +8,9 @@ export function loginRequest(data: any) {
   })
 }
 
-export function logoutRequest(data: any) {
+export function logoutRequest() {
   return axios({
     url: '/api/logout',
     method: 'post',
-    data
   })
 }

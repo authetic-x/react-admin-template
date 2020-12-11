@@ -88,8 +88,7 @@ axiosInstance.interceptors.response.use(
         okText: "relogin",
         cancelText: "cancel",
         onOk() {
-          let token = store.getState().user.token;
-          store.dispatch<any>(logout(token));
+          store.dispatch<any>(logout());
         },
         onCancel() {
           console.log("Cancel");

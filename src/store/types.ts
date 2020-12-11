@@ -6,7 +6,7 @@ export type rootState = {
 // actionType types
 export const USER_SET_USER_TOKEN = "USER_SET_USER_TOKEN";
 export const USER_SET_USER_INFO = "USER_SET_USER_INFO";
-export const USER_RESET_USER = "USER_RESET_USER";
+export const USER_RESET_USER_TOKEN = "USER_RESET_USER_TOKEN";
 
 // app
 export const APP_TOGGLE_SIDEBAR = "APP_TOGGLE_SIDEBAR";
@@ -31,7 +31,7 @@ export interface IFAppAction {
 }
 
 export interface IFUserAction {
-  type: typeof USER_SET_USER_TOKEN | typeof USER_SET_USER_INFO | typeof USER_RESET_USER
+  type: typeof USER_SET_USER_TOKEN | typeof USER_SET_USER_INFO | typeof USER_RESET_USER_TOKEN
   [index: string]: any
 }
 

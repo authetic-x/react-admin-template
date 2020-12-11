@@ -1,9 +1,23 @@
 .right-menu {
   float: right;
+  .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-left: 1.2em;
+    height: 64px;
+    vertical-align: middle;
+    cursor: pointer;
+    .caret-icon {
+      position: absolute;
+      bottom: 14px;
+      right: -20px;
+    }
+  }
 }
 
 .screenfull-container {
   display: inline-block;
   font-size: 25px;
+  vertical-align: middle;
   cursor: pointer;
 }

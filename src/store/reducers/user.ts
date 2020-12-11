@@ -12,6 +12,7 @@ const initUserInfo: IFUserState = {
 }
 
 export default function user(state: IFUserState = initUserInfo, action: IFUserAction): IFUserState {
+  console.log('react use reducer')
   switch(action.type) {
     case 'USER_SET_USER_INFO':
       return {
@@ -25,7 +26,7 @@ export default function user(state: IFUserState = initUserInfo, action: IFUserAc
         ...state,
         token: action.token || ''
       }
-    case 'USER_RESET_USER':
+    case 'USER_RESET_USER_TOKEN':
       return {
         name: '',
         role: '',
