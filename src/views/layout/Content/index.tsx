@@ -21,6 +21,7 @@ const ContentComp: React.FC<IProps> = (props) => {
     return flattenRoutes(routes)
   }, [routes])
 
+  //TODO: Add animation for component switch
   return (
     <Content className={classes} style={props.style}>
       <Transition key={location.pathname} in={true} animation='zoom-in-left' timeout={200}>

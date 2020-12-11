@@ -4,7 +4,8 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { toggleSidebar } from '../../../store/actions/app'
 import { connect } from 'react-redux'
 import BreadCrumb from '../components/BreadCrumb'
-import BreadCrum from '../components/BreadCrumb';
+import Fullscreen from '../components/FullScreen'
+import './index.scss'
 
 const { Header } = Layout
 
@@ -21,6 +22,9 @@ const HeaderComp: React.FC = (props: any) => {
       }
 
       <BreadCrumb />
+      <div className="right-menu">
+        <Fullscreen />
+      </div>
     </Header>
   )
 }
