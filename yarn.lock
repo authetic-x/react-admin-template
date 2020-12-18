@@ -1850,6 +1850,13 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
+"@types/react-beautiful-dnd@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.npm.taobao.org/@types/react-beautiful-dnd/download/@types/react-beautiful-dnd-13.0.0.tgz#e60d3d965312fcf1516894af92dc3e9249587db4"
+  integrity sha1-5g09llMS/PFRaJSvktw+kklYfbQ=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-custom-scrollbars@^4.0.7":
   version "4.0.7"
   resolved "https://registry.npm.taobao.org/@types/react-custom-scrollbars/download/@types/react-custom-scrollbars-4.0.7.tgz#b1312ec749fcf4a01fee7466508501e072ede7ea"

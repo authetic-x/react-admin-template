@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu } from 'antd'
 import { useLocation } from 'react-router-dom'
 import routes, { IRoute } from '../../../routes/routemap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd'
 import './index.scss'
 
 const { Sider } = Layout
@@ -38,6 +39,8 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
       }
     })
   }
+
+  const [menuItems, setMenuItems] = useState(renderMenuNodes(routes))
   
   const renderSidebarLogo = () => {
     return (
@@ -47,6 +50,29 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
     )
   }
 
+  const reOrder = (list: JSX.Element[], startIndex: number, endIndex: number) => {
+    const result = Array.from(list)
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+    return result
+  }
+
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return
+
+    const newMenuItems = reOrder(menuItems, result.source.index, result.destination.index)
+    setMenuItems(newMenuItems)
+  }
+
+  const getListStyle = (isDraggingOver: boolean) => ({
+    //TODO: add background style
+  })
+
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    userSelect: 'none',
+    ...draggableStyle
+  })
+
   return (
     <Sider className='sidebar' trigger={null} collapsible collapsed={props.collapse}>
       <div className='sidebar-wrapper'>
@@ -54,11 +80,44 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
           props.sidebarLogo ? renderSidebarLogo() : null
         }
         <div className='menu-container custom-scrollbar'>
-          <Menu theme="dark" mode="inline" selectedKeys={[location.pathname]}>
-            {
-              renderMenuNodes(routes)
-            }
-          </Menu>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId='droppable'>
+              {
+                (provided, snapshot) => (
+                  <div 
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {
+                      menuItems.map((menuitem, index) => (
+                        <Draggable key={menuitem.key} draggableId={String(menuitem.key)} index={index}>
+                          {
+                            (provided, snapshot) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                              >
+                                <Menu
+                                  theme='dark'
+                                  mode='inline'
+                                  selectedKeys={[location.pathname]}
+                                >
+                                  { menuitem }
+                                </Menu>
+                              </div>
+                            )
+                          }
+                        </Draggable>
+                      ))
+                    }
+                    { provided.placeholder }
+                  </div>
+                )
+              }
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </Sider>
