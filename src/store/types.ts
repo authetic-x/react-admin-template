@@ -1,6 +1,8 @@
+
 export type rootState = {
   user: IFUserState,
-  app: IFAppState
+  app: IFAppState,
+  tagsView: IFTagsViewState
 }
 
 // actionType types
@@ -45,6 +47,11 @@ export interface IFSettingAction {
   value: boolean
 }
 
+export interface IFTagsViewAction {
+  type: typeof TAGSVIEW_ADD_TAG | typeof TAGSVIEW_CLOSE_OTHER_TAGS |
+   typeof TAGSVIEW_DELETE_TAG | typeof TAGSVIEW_EMPTY_TAGLIST
+}
+
 // state types
 export interface IFAppState {
   sidebarOpened: boolean
@@ -62,4 +69,13 @@ export interface IFSettingState {
   sidebarLogo: boolean,
   fixedHeader: boolean,
   tagsView: boolean
+}
+
+type tag = {
+  title: string,
+  path: string
+}
+
+export interface IFTagsViewState {
+  tagsList: tag[]
 }
