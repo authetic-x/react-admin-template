@@ -4,8 +4,10 @@ import { useLocation } from 'react-router-dom'
 import routes, { IRoute } from '../../../routes/routemap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { addTags } from '../../../store/actions/tagsViews'
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd'
 import './index.scss'
+import { flattenRoutes } from 'src/utils/utils';
 
 const { Sider } = Layout
 const { SubMenu } = Menu
@@ -73,6 +75,20 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
     ...draggableStyle
   })
 
+  const handleMenuSelect = ({key}: any) => {
+    if (key === '/dashboard') return
+    console.log('Menu key: ', key)
+    const flattenedRoutes = flattenRoutes(routes)
+    for (let route of flattenedRoutes) {
+      if (key === route.path) {
+        props.addTags({
+          path: route.path,
+          title: route.title
+        })
+      }
+    }
+  }
+
   return (
     <Sider className='sidebar' trigger={null} collapsible collapsed={props.collapse}>
       <div className='sidebar-wrapper'>
@@ -103,6 +119,7 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
                                   theme='dark'
                                   mode='inline'
                                   selectedKeys={[location.pathname]}
+                                  onSelect={handleMenuSelect}
                                 >
                                   { menuitem }
                                 </Menu>
@@ -124,6 +141,6 @@ const SiderComponent: React.FC<SiderProps> = (props: any) => {
   )
 }
 
-const SiderComponentWrapper = connect((state: any) => state.settings, {})(SiderComponent)
+const SiderComponentWrapper = connect((state: any) => state.settings, { addTags })(SiderComponent)
 
 export default SiderComponentWrapper

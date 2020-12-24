@@ -50,6 +50,8 @@ export interface IFSettingAction {
 export interface IFTagsViewAction {
   type: typeof TAGSVIEW_ADD_TAG | typeof TAGSVIEW_CLOSE_OTHER_TAGS |
    typeof TAGSVIEW_DELETE_TAG | typeof TAGSVIEW_EMPTY_TAGLIST
+  tag?: Tag
+  path?: string
 }
 
 // state types
@@ -71,11 +73,18 @@ export interface IFSettingState {
   tagsView: boolean
 }
 
-type tag = {
+export type Tag = {
   title: string,
   path: string
 }
 
 export interface IFTagsViewState {
-  tagsList: tag[]
+  tagsList: Tag[]
+}
+
+export interface RootState {
+  app: IFAppState
+  user: IFUserState
+  settings: IFSettingState
+  tagsView: IFTagsViewState
 }

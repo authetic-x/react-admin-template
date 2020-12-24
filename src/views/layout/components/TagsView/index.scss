@@ -1,0 +1,15 @@
+.tagsView-container {
+  height: 36px;
+  line-height: 36px;
+  background-color: #fff;
+  white-space: nowrap;
+  border-bottom: 1px solid #ccc;
+
+  .tags-wrapper {
+    padding: 0 1em;
+    .tag-item {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}
