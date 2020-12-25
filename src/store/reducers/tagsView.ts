@@ -20,14 +20,18 @@ const tagsView: Reducer<IFTagsViewState, IFTagsViewAction> = (state = initialSta
       }
       return state
     case 'TAGSVIEW_CLOSE_OTHER_TAGS':
-      return state
+      return {
+        tagsList: state.tagsList.filter(tag => tag.path === action.path)
+      }
     case 'TAGSVIEW_DELETE_TAG':
       const newTagList = state.tagsList.filter(tag => tag.path !== action.path)
       return {
         tagsList: newTagList
       }
     case 'TAGSVIEW_EMPTY_TAGLIST':
-      return state
+      return {
+        tagsList: []
+      }
     default:
       return state
   }

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Login from '../views/login'
 import Layout from '../views/layout'
 import { getUserInfo } from '../store/actions/user'
+import { addTags } from '../store/actions/tagsViews'
 import { rootState } from '../store/types'
 
 const Router: React.FC = (props:any) => { 
@@ -32,4 +33,5 @@ const Router: React.FC = (props:any) => {
   )
 }
 
-export default connect((state: rootState) => state.user, { getUserInfo })(Router)
+export default connect((state: rootState) => ({...state.user, ...state.tagsView}), 
+  { getUserInfo })(Router)

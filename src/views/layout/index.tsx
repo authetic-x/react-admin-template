@@ -12,10 +12,6 @@ const { Footer } = Layout
 const LayoutComponent: React.FC = (props: any) => {
   const { sidebarOpened } = props
 
-  useEffect(() => {
-    console.log(props.tagsView)
-  })
-
   return (
     <Layout>
       <Sider collapse={sidebarOpened}/>

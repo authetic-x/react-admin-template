@@ -13,3 +13,16 @@ export const deleteTag = (path: string): types.IFTagsViewAction => {
     path
   }
 }
+
+export const closeOtherTags = (path: string): types.IFTagsViewAction => {
+  return {
+    type: types.TAGSVIEW_CLOSE_OTHER_TAGS,
+    path
+  }
+}
+
+export const closeAllTags = (): types.IFTagsViewAction => {
+  return {
+    type: types.TAGSVIEW_EMPTY_TAGLIST
+  }
+}
