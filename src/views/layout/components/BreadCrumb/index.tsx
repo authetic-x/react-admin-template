@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb } from 'antd'
 import routes, { IRoute } from '../../../../routes/routemap'
 import { Link, useLocation } from 'react-router-dom'
+import Transition from '../../../../components/Transition'
 import './index.scss'
 
 function flattenRoutes(routes: IRoute[]): IRoute[] {

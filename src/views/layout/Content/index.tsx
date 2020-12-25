@@ -5,6 +5,7 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import routes, { IRoute } from '../../../routes/routemap'
 import { flattenRoutes } from '../../../utils/utils'
 import Transition from '../../../components/Transition'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const { Content } = Layout
 
@@ -24,23 +25,25 @@ const ContentComp: React.FC<IProps> = (props) => {
   //TODO: Add animation for component switch
   return (
     <Content className={classes} style={props.style}>
-      <Transition key={location.pathname} in={true} animation='zoom-in-left' timeout={200}>
-        <Switch>
-          <Redirect exact from='/' to='/dashboard'/>
-          {
-            flattenedRoutes.map(route => {
-              return (
-                <Route 
-                  path={route.path}
-                  key={route.path}
-                  component={route.component}
-                />
-              )
-            })
-          }
+      <TransitionGroup>
+        <CSSTransition key={location.pathname} timeout={500} classNames='fade' exit={false}>
+          <Switch>
+            <Redirect exact from='/' to='/dashboard'/>
+            {
+              flattenedRoutes.map(route => {
+                return (
+                  <Route 
+                    path={route.path}
+                    key={route.path}
+                    component={route.component}
+                  />
+                )
+              })
+            }
 
-        </Switch>
-      </Transition>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
     </Content>
   )
 }

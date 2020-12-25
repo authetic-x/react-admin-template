@@ -2,3 +2,19 @@
 @include zoom-animation('left', scale(.45, .45), scale(1, 1), top left);
 @include zoom-animation('right', scale(.45, .45), scale(1, 1), top right);
 @include zoom-animation('bottom', scaleY(0), scaleY(1),  center bottom);
+
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-enter-active, .fade-exit-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 0;
+  transform: translateX(30px);
+}
