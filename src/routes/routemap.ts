@@ -3,6 +3,7 @@ import Loadable, { LoadableComponent } from 'react-loadable'
 import Loading from '../components/Loading'
 
 const Dashboard = Loadable({ loader: () => import(/*webpackChunkName: 'Dashboard'*/'../views/Dashboard'), loading: Loading })
+const RichTextEditor = Loadable({ loader: () => import(/*webpackChunkName: 'RichTextEditor'*/'../views/Examples/RichRTextEditor'), loading: Loading })
 
 type Role = 'admin' | 'editor' | 'guest'
 
@@ -34,7 +35,13 @@ const routes: IRoute[] = [
       }
     ]
   },
-  { path: '/components', title: 'Components', component: Dashboard, roles: ['admin', 'editor', 'guest']},
+  { path: '/components', title: 'Components', component: Dashboard, roles: ['admin', 'editor', 'guest'], 
+    children: [
+      {
+        path: '/components/richTextEditor', component: 
+      }
+    ]
+  },
   { path: '/charts', title: 'Charts', component: Dashboard, roles: ['admin', 'editor', 'guest']},
   { path: '/nested', title: 'Nested', component: Dashboard, roles: ['admin', 'editor', 'guest']},
   { path: '/table', title: 'Table', component: Dashboard, roles: ['admin', 'editor', 'guest']},
