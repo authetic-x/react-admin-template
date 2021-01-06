@@ -3,7 +3,8 @@ import Loadable, { LoadableComponent } from 'react-loadable'
 import Loading from '../components/Loading'
 
 const Dashboard = Loadable({ loader: () => import(/*webpackChunkName: 'Dashboard'*/'../views/Dashboard'), loading: Loading })
-const RichTextEditor = Loadable({ loader: () => import(/*webpackChunkName: 'RichTextEditor'*/'../views/Examples/RichRTextEditor'), loading: Loading })
+const RichTextEditor = Loadable({ loader: () => import(/*webpackChunkName: 'RichTextEditor'*/'../views/Components/RichRTextEditor'), loading: Loading })
+const FileUploader = Loadable({ loader: () => import(/*webpackChunkName: 'FileUploader'*/'../views/Components/FileUploader'), loading: Loading })
 
 type Role = 'admin' | 'editor' | 'guest'
 
@@ -38,7 +39,14 @@ const routes: IRoute[] = [
   { path: '/components', title: 'Components', component: Dashboard, roles: ['admin', 'editor', 'guest'], 
     children: [
       {
-        path: '/components/richTextEditor', component: 
+        path: '/components/richTextEditor', 
+        component: RichTextEditor,
+        title: 'RichTextEditor'
+      },
+      {
+        path: '/components/fileUploader', 
+        component: FileUploader,
+        title: 'FileUploader'
       }
     ]
   },
