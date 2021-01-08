@@ -74,6 +74,18 @@ const FileUploader: React.FC = (props) => {
     await Promise.all(requestList)
   }
 
+  async function mergeRequest() {
+    await request({
+      url: 'http://localhost:4000/merge',
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: JSON.stringify({
+        filename: container.file?.name
+      })
+    })
+  }
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0]
     if (!file) return
@@ -91,6 +103,7 @@ const FileUploader: React.FC = (props) => {
     }))
     setData(data)
     await uploadChunks()
+    // await mergeRequest()
   }
 
   return (
