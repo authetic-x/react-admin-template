@@ -6,6 +6,9 @@
 /.pnp
 .pnp.js
 
+# test upload files
+/server/target
+
 # testing
 /coverage
 
