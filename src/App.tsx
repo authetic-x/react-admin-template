@@ -5,11 +5,9 @@ import Router from './routes/index'
 
 function App() {
   return (
-    <div className="App">
-      <Provider store={store}>
-        <Router />
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 }
 

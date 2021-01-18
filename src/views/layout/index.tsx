@@ -15,18 +15,17 @@ const LayoutComponent: React.FC = (props: any) => {
   return (
     <Layout>
       <Sider collapse={sidebarOpened}/>
-      <Layout>
+      <Layout style={{minHeight: '100%'}}>
         <Header />
         { props.tagsView ? <TagsView /> : null }
         <Content
           className="content"
           style={{
             margin: '24px 16px',
-            padding: 24,
             minHeight: 280,
           }}
         />
-        <Footer style={{ textAlign: 'center' }}>Openup-admin ©2020 Created by Ethan Hsu</Footer>
+        {/* <Footer style={{ textAlign: 'center' }}>Openup-admin ©2020 Created by Ethan Hsu</Footer> */}
       </Layout>
     </Layout>
   )

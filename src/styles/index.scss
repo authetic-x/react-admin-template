@@ -6,12 +6,10 @@
 
 @import './animation';
 
-#root {
+#root, .ant-layout {
   height: 100%;
 }
-.App {
-  height: 100%;
-}
+
 // loading component
 #loading {
   display: flex;
